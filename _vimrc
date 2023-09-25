@@ -39,3 +39,97 @@ function MyDiff()
   endif
 endfunction
 
+" =========================
+" TBD9rain defined settings
+" =========================
+
+" BASIC SETTING
+" not compatible with Vi
+set nocompatible
+" highlight syntax word
+syntax on
+" activate operations with mouse
+set mouse=a
+" display mode
+set showmode
+" display command
+set showcmd
+" auto new line after text is too long
+set textwidth=100
+
+
+" INDENT SETTING
+" keep indent after Enter
+set autoindent
+" tab width in insert mode
+set tabstop=4
+" tab width in normal mode
+set shiftwidth=4
+" replace tab with space
+set expandtab
+" the number of space tab was transformed from tab
+set softtabstop=4
+
+
+" DISPLAY SETTING
+" display line number
+set number
+" display relative line number
+set relativenumber
+" highlight cursor
+set cursorline
+" line
+set lines=30
+" column
+set columns=90
+" divide long line into adaptive lines
+set wrap
+" divide line after break sumbols
+set linebreak
+" space number between right edge of window and divided line
+set wrapmargin=2
+" always display status bar
+set laststatus=2
+" status bar string format
+set statusline=row=%04l/%04L,col=%04c\ %<%f
+" display current cursor position, redundent when tabline is displaying
+set ruler
+" always display tabline
+set showtabline=2
+" tab page maximum
+set tabpagemax=20
+" color scheme
+colorscheme desert
+
+
+" FONT SETTING
+" font, size, other options
+set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
+
+
+" SEARCH SETTING
+" match brakets
+set showmatch
+" highlight search results
+set hlsearch
+" increasing search results highlighting
+set incsearch
+
+
+" CONTENT FOLD SETTING
+" creates folds according to indent
+" set foldmethod=indent
+
+
+" FILE TYPE
+" verilog files
+autocmd BufNewFile,BufRead *.v set filetype=verilog
+" systemverilog files
+autocmd BufNewFile,BufRead *.sv set filetype=systemverilog
+" c files
+autocmd BufNewFile,BufRead *.c set filetype=c
+" modelsim do files
+autocmd BufNewFile,BufRead *.do set filetype=tcl
+" git ignore files
+autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
+
