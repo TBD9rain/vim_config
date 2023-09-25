@@ -161,3 +161,8 @@ autocmd BufNewFile *.c 0r C:\Program Files\Vim\vimfiles\template\code.c
 autocmd BufNewFile .gitignore 0r C:\Program Files\Vim\vimfiles\template\template.gitignore
 
 
+" VIM-PLUG
+call plug#begin('C:/Program Files/Vim/vimfiles/plugged')
+
+
+call plug#end()
