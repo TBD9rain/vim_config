@@ -7,7 +7,7 @@ For more information, check [vim on github](https://github.com/vim/vim).
 vim-plug is a vim plugin manager.
 The vim-plug is **with the vimfiles**. And can be got with `git clone` command.
 
-To explicitly install vim-plug with the following command in powershell.
+To **explicitly** install vim-plug with the following command in powershell.
 ```
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "./vimfiles/autoload/plug.vim" -Force
