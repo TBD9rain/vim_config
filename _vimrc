@@ -164,5 +164,6 @@ autocmd BufNewFile .gitignore 0r C:\Program Files\Vim\vimfiles\template\template
 " VIM-PLUG
 call plug#begin('C:/Program Files/Vim/vimfiles/plugged')
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
