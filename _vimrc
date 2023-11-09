@@ -55,7 +55,7 @@ set showmode
 " display command
 set showcmd
 " auto new line after text is too long
-set textwidth=100
+set textwidth=160
 
 
 " INDENT SETTING
