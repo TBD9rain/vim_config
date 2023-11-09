@@ -2,6 +2,8 @@
 
 **Deployment after gvim installation:**
 - `git clone` this repository
+- move all files and directories to the vim location
+including **.git** invisible directory
 - install *yarn* and *node.js*
 - run `:PlugInstallation` in vim command line
 
