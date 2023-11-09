@@ -55,7 +55,7 @@ set showmode
 " display command
 set showcmd
 " auto new line after text is too long
-set textwidth=100
+set textwidth=160
 
 
 " INDENT SETTING
@@ -164,5 +164,6 @@ autocmd BufNewFile .gitignore 0r C:\Program Files\Vim\vimfiles\template\template
 " VIM-PLUG
 call plug#begin('C:/Program Files/Vim/vimfiles/plugged')
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
