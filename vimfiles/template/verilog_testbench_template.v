@@ -14,15 +14,15 @@
 //  U.S.A                                    email: techsupport@latticesemi.com
 //===============================================================================
 //
-//  Project          :
-//  File             :
-//  Version          :
-//  Title            :
+//  Project          :  
+//  File             :  
+//  Version          :  v1.0
+//  Title            :  
 //  
-//  Description      :
-//                     
-//  Addt'l info      : 
-//  Version history  :
+//  Description      :  
+//                      
+//  Addt'l info      :  
+//  Version history  :  
 //
 //===============================================================================
 
@@ -53,7 +53,7 @@ reg                 disp_en = 1'b1;
 
 
 //----------------
-//  INPUT TESTCASE
+//  INPUT SIMULATE
 //----------------
 
 //  clock generator
@@ -83,6 +83,8 @@ end
 //-----------------
 //  TASK DEFINITION
 //-----------------
+
+
 
 endmodule
 
