@@ -4,15 +4,15 @@
 //  File            :   
 //  Version         :   v1.0
 //  Title           :   
-//                      
+//
 //  Description     :   
-//                      
+//
 //  Addt'l info     :   
 //  Version history :   
 //
 //  Author          :   
 //  Email           :   
-// 
+//
 //==============================================================================
 
 module module_name(

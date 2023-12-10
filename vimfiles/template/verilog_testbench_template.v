@@ -61,6 +61,9 @@ initial begin:  init_stimulus
     # ({$random} % 100)
     //  stimulus editing
     rst_n   = 1'b1;
+
+    # 50000
+    $finish(2);
 end
 
 //--------------
