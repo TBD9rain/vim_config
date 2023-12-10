@@ -1,4 +1,5 @@
 # ignore vim operation record files
+*.swp
 *~
 
 # ignore shotcut files
