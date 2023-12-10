@@ -14,7 +14,7 @@ set sim_time        1000
 quit -sim
 
 # 2. CLEAR COMMAND LINES
-.main clear
+# .main clear
 
 # 3. CREATE A DIRECOTRY TO SAVE MODELSIM DATA FILES
 if {[file exists work]} {
@@ -35,25 +35,24 @@ vlog -work work <Verilog File Paths>
 # 6a. START FUNCTIONAL SIMULATION
 vsim -lib work -L pmi_work \
     "work.$tb_module" \
-    -t 1ps -l sim.log -wlftlim {5000ns}
+    -t 1ps -l sim.log
 
 # 6b. START GATE-LEVEL SIMULATION
 # vsim -lib work -L pmi_work -L <Device Library> \
 #     "work.$tb_module" \
-#     -t 1ps -l sim.log -wlftlim {5000ns}
+#     -t 1ps -l sim.log
 
 # 6c. START GATE-LEVEL + TIMING SIMULATION
 # vsim -lib work -L pmi_work -L <Device Library> \
 #     "work.$tb_module" \
 #     -sdftyp /$tb_module/u0_dut=<SDF FILE PATH> \
 #     +transport_int_delays +transport_path_delays \
-#     -t 1ps -l sim.log -wlftlim {5000ns}
+#     -t 1ps -l sim.log
 
 # 7 SIMULATION
 set UserTimeUnit ns
 if {$sim_time <= 0} {
     run -all
-    quit -sim
 } else {
     # ADD WAVEFORM
     if {[file exists $wave_do]} {
