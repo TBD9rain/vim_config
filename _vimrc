@@ -132,6 +132,8 @@ autocmd BufNewFile,BufRead *.c set filetype=c
 autocmd BufNewFile,BufRead *.do set filetype=tcl
 " git ignore files
 autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
+" powershell script
+autocmd BufNewFile,BufRead .ps1 set filetype=ps1
 
 
 " LOAD TEMPLATE
@@ -149,6 +151,8 @@ autocmd BufNewFile *.do 0r C:\Program Files\Vim\vimfiles\template\modelsimDo.do
 autocmd BufNewFile *.c 0r C:\Program Files\Vim\vimfiles\template\code.c
 " git ignore template
 autocmd BufNewFile .gitignore 0r C:\Program Files\Vim\vimfiles\template\template.gitignore
+" powershell script for automatice simulation with matlab and modelsim 
+autocmd BufNewFile auto_sim.ps1 0r C:\Program Files\Vim\vimfiles\template\powershell_auto_sim_template.ps1
 
 
 " VIM-PLUG
