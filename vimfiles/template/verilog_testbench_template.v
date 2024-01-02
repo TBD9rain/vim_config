@@ -1,6 +1,6 @@
 //===============================================================================
 //                            COPYRIGHT NOTICE
-//  Copyright 2000-2019 (c) Lattice Semiconductor Corporation
+//  Copyright 2000-2024 (c) Lattice Semiconductor Corporation
 //  ALL RIGHTS RESERVED
 //  This confidential and proprietary software may be used only as authorised by
 //  a licensing agreement from Lattice Semiconductor Corporation.
