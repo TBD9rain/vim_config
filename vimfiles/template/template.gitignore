@@ -4,3 +4,15 @@
 
 # ignore shotlink files
 *.lnk
+
+# ignore diamond files
+*.ncd
+*.dmp
+*.trc
+
+*.tcr
+*.xml
+*.html
+
+**/impl1/**/*
+!*.xcf
