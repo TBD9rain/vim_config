@@ -91,7 +91,7 @@ set wrapmargin=2
 " always display status bar
 set laststatus=2
 " status bar string format
-set statusline=row=%04l/%04L,col=%04c\ %<%f 
+set statusline=row=%04l/%04L,col=%04c\ %<%f
 " display current cursor position, redundent when tabline is displaying
 set ruler
 " always display tabline
@@ -116,7 +116,7 @@ set hlsearch
 set incsearch
 
 
-" CONTENT FOLD SETTING 
+" CONTENT FOLD SETTING
 " creates folds according to indent
 " set foldmethod=indent
 
@@ -166,4 +166,7 @@ call plug#begin('C:/Program Files/Vim/vimfiles/plugged')
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
+Plug 'preservim/nerdtree'
+
 call plug#end()
+
