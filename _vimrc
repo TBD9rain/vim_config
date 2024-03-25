@@ -170,3 +170,12 @@ Plug 'preservim/nerdtree'
 
 call plug#end()
 
+
+" NERDTree
+
+" open NERDTree with vim starting
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+" close NERDTree after all files closed
+autocmd BufEnter * if (winnr('$') == 1 && exists("t:NERDTreeBufName") && bufname('%') == t:NERDTreeBufName) | q | endif
+
