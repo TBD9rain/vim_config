@@ -3,9 +3,9 @@
 **Deployment after gvim installation:**
 - `git clone` this repository
 - move all files and directories to the vim location
-including **.git** invisible directory
+including invisible **.git** directory
 - install *yarn* and *node.js*
-- run `:PlugInstallation` in vim command line
+- run `:PlugInstall` in vim command line to download plugins
 
 
 # Install gvim for windows
@@ -17,62 +17,23 @@ The installation should be `C:\Program Files\Vim`.
 For more info, check [vim on github](https://github.com/vim/vim).
 
 
-# Install vim-plug
+# vim-plug
 
-vim-plug is a vim plugin manager.
-The vim-plug is **with the vimfiles**. And can be got with `git clone` command.
+> A minimalist Vim plugin manager.
 
-To **explicitly** install vim-plug with the following command in powershell.
-```
-iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
-    ni "./vimfiles/autoload/plug.vim" -Force
-```
+The vim-plug is built with vimscript.
+[Download the plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim),
+put it in the vim autoload directory,
+and the vim-plug will be ready to use after vim restarting.
 
 For more info, check [vim-plug](https://github.com/junegunn/vim-plug).
 
 
-# Install markdown preview plugin
-
-*markdown-preview.nvim* plugin from github is applied to preview markdown files with default web browser.
-The ***yarn*** and ***node.js*** are needed for *markdown-preview.nvim* installation.
-
-*markdown-preview.nvim* is installed through vim-plug command in gvim command line `:PlugInstallation` after adding the following command in vim-plug block in _vimrc:
-```
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-```
-
-For more info, check [mark-preview.nvim](https://github.com/iamcco/markdown-preview.nvim).
-
-
-## Install chocolatey
-
-*chocolatey* is a package manager on windows. And it's a good choice for *yarn* and *node.js* installation.
-It can be installed with the following command in powershell with **administrative mode**.
-```
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
-```
-For more info, check [choco setup](https://docs.chocolatey.org/en-us/choco/setup).
-
-
-## Install yarn and nodejs
-
-After chocolatey installation, use the following commands to install ***yarn*** and ***node.js***.
-
-```
-choco install yarn
-choco install nodejs
-```
-
-For more info about chocolatey, check [Choco docs](https://docs.chocolatey.org/en-us/).
-
-
-# Install NERDTree
+# NERDTree
 
 > The NERDTree is a file system explorer for the Vim editor.
 
-The installation could be completed by Plug-in with an extra command:
+NERDTree could be loaded by vim-plug with an extra command in the \_vimrc file:
 ```
 Plug 'preservim/nerdtree'
 ```
@@ -80,12 +41,12 @@ Plug 'preservim/nerdtree'
 For more info, check [NERDTree](https://github.com/preservim/nerdtree).
 
 
-# Install vim-airline
+# vim-airline
 
 > vim-airline is a fast and lightweight alternative to powerline, written
 in 100% vimscript with no outside dependencies.
 
-The plugin could be loaded by Plug-in with an extra comman:
+vim-airline could be loaded by vim-plug with an extra command in the \_vimrc file:
 ```
 Plug 'vim-airline/vim-airline'
 ```
@@ -105,5 +66,42 @@ The [DejaVuSansMono Nerd Font](https://github.com/dejavu-fonts/dejavu-fonts),
 [JetBrainsMono Nerd Font](https://github.com/JetBrains/JetBrainsMono),
 or [Meslo Nerd Font](https://github.com/andreberg/Meslo-Font)
 is recommended.
+
+
+# markdown-preview.nvim
+
+*markdown-preview.nvim* plugin is applied to preview markdown files with default web browser.
+The ***yarn*** and ***node.js*** are needed for *markdown-preview.nvim* installation.
+
+Add the following command in vim-plug block in _vimrc:
+```
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+```
+
+For more info, check [mark-preview.nvim](https://github.com/iamcco/markdown-preview.nvim).
+
+
+## chocolatey
+
+*chocolatey* is a package manager on windows. And it's a good choice for *yarn* and *node.js* installation.
+It can be installed with the following command in powershell with **administrative mode**.
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+```
+For more info, check [choco setup](https://docs.chocolatey.org/en-us/choco/setup).
+
+
+## yarn and nodejs
+
+After chocolatey installation, use the following commands to install ***yarn*** and ***node.js***.
+
+```
+choco install yarn
+choco install nodejs
+```
+
+For more info about chocolatey, check [Choco docs](https://docs.chocolatey.org/en-us/).
 
 
