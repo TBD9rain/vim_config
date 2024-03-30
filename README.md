@@ -80,3 +80,30 @@ Plug 'preservim/nerdtree'
 For more info, check [NERDTree](https://github.com/preservim/nerdtree).
 
 
+# Install vim-airline
+
+> vim-airline is a fast and lightweight alternative to powerline, written
+in 100% vimscript with no outside dependencies.
+
+The plugin could be loaded by Plug-in with an extra comman:
+```
+Plug 'vim-airline/vim-airline'
+```
+
+For more info, check [vim-airline](https://github.com/vim-airline/vim-airline)
+
+## Nerd Fonts
+
+> Nerd Fonts is a project that patches developer targeted fonts
+with a high number of glyphs (icons).
+
+To display vim-airline symbols,
+Nerd Fonts are needed in vim.
+Nerd Fonts could be downloaded from
+[Nerd Fonts Download](https://www.nerdfonts.com/font-downloads).
+The [DejaVuSansMono Nerd Font](https://github.com/dejavu-fonts/dejavu-fonts),
+[JetBrainsMono Nerd Font](https://github.com/JetBrains/JetBrainsMono),
+or [Meslo Nerd Font](https://github.com/andreberg/Meslo-Font)
+is recommended.
+
+
