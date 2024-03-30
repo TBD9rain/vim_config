@@ -138,24 +138,30 @@ autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
 
 
 " LOAD TEMPLATE
+" set template relative path
+let g:template_path = expand('<sfile>:p:h') . '/vimfiles/template/'
 " verilog testbench template
-autocmd BufNewFile *{_tb}.v 0r C:\Program Files\Vim\vimfiles\template\verilog_testbench_template.v
+autocmd BufNewFile *_tb.v execute '0r ' . g:template_path . 'verilog_testbench_template.v'
 " verilog code template
-autocmd BufNewFile *{_tb}\@<!.v 0r C:\Program Files\Vim\vimfiles\template\verilog_source_template.v
+autocmd BufNewFile *{_tb}\@<!.v execute '0r ' . g:template_path . 'verilog_source_template.v'
 " systemverilog testbench template
-autocmd BufNewFile *{_tb}.sv 0r C:\Program Files\Vim\vimfiles\template\systemverilog_testbench_template.sv
+autocmd BufNewFile *_tb.sv execute '0r ' . g:template_path . 'systemverilog_testbench_template.sv'
 " systemverilog code template
-autocmd BufNewFile *{_tb}\@<!.sv 0r C:\Program Files\Vim\vimfiles\template\systemverilog_source_template.sv
+autocmd BufNewFile *{_tb}\@<!.sv execute '0r ' . g:template_path . 'systemverilog_source_template.sv'
 " modelsim do file template
-autocmd BufNewFile *.do 0r C:\Program Files\Vim\vimfiles\template\modelsimDo.do
-" C code template
-autocmd BufNewFile *.c 0r C:\Program Files\Vim\vimfiles\template\code.c
+autocmd BufNewFile *.do execute '0r ' . g:template_path . 'modelsimDo.do'
+" c code template
+autocmd BufNewFile *.c execute '0r ' . g:template_path . 'code.c'
 " git ignore template
-autocmd BufNewFile .gitignore 0r C:\Program Files\Vim\vimfiles\template\template.gitignore
+autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitignore'
 
 
-" VIM-PLUG
-call plug#begin('C:/Program Files/Vim/vimfiles/plugged')
+" vim-plug
+" set plugin directory path
+let g:vim_plug_path = expand('<sfile>:p:h') . '/vimfiles/plugged'
+
+" load plugins
+call plug#begin(g:vim_plug_path)
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
