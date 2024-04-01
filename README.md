@@ -63,6 +63,19 @@ or [Meslo Nerd Font](https://github.com/andreberg/Meslo-Font)
 is recommended.
 
 
+# Vim-DevIcons
+
+> Adds Icons to Your Plugins
+
+Vim-DevIcons could be loaded by vim-plug with an extra command in the \_vimrc file:
+```
+Plug 'ryanoasis/vim-devicons'
+```
+
+The icons for different filetype could be customized.
+For more info, check [Vim-DevIcons](https://github.com/ryanoasis/vim-devicons).
+
+
 # markdown-preview.nvim
 
 *markdown-preview.nvim* plugin is applied to preview markdown files with default web browser.

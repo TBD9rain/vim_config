@@ -168,6 +168,8 @@ Plug 'preservim/nerdtree'
 
 Plug 'vim-airline/vim-airline'
 
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 
@@ -190,4 +192,17 @@ let g:airline_section_b = 'BN %n, %{WordCount()}'
 let g:airline_section_z = '%p%% l:%l/%L c:%c'
 " display names of different files in buffer
 let g:airline#extensions#tabline#enabled = 1
+
+
+" Vim-DevIcons
+" add or override individual additional filetypes
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󱜨'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
+
+" change the default character when no match found
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
+
 
