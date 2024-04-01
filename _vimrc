@@ -84,7 +84,7 @@ set lines=30
 set columns=90
 " divide long line into adaptive lines
 set wrap
-" divide line after break sumbols
+" divide line after break symbols
 set linebreak
 " space number between right edge of window and divided line
 set wrapmargin=2
@@ -175,34 +175,33 @@ call plug#end()
 
 " NERDTree
 " open NERDTree with vim starting
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-" close NERDTree after all files closed
-autocmd BufEnter * if (winnr('$') == 1 && exists('t:NERDTreeBufName') && bufname('%') == t:NERDTreeBufName) | q | endif
+autocmd VimEnter * NERDTree | wincmd p
+" execute 'q' if NERDTree is the only window remaining in current tab.
+autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
+" open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 " vim-airline
-function! WordCount()
-    let words = len(split(join(getline(1, '$')), '\W\+'))
-    return words . ' words'
-endfunction
 " display buffer number
-let g:airline_section_b = 'BN %n, %{WordCount()}'
+let g:airline_section_b = 'BufFile %n'
 " display buffer number
-let g:airline_section_z = '%p%% l:%l/%L c:%c'
+let g:airline_section_z = '%p%% %l/%L %c'
 " display names of different files in buffer
 let g:airline#extensions#tabline#enabled = 1
+" jump to previous buffer file before delete current buffer file
+nnoremap <c-b>d :bp<bar>bd#<CR>
 
 
 " Vim-DevIcons
+" change the default character when no match found
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
+
 " add or override individual additional filetypes
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󱜨'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
-
-" change the default character when no match found
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
 
 
