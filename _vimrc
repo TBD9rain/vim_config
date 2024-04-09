@@ -103,8 +103,11 @@ colorscheme desert
 
 
 " FONT SETTING
-" font, size, other options
-set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
+" font:height:other options
+set encoding=utf-8
+" set guifont=DejaVuSansM_Nerd_Font_Mono:h14:cANSI:qDEFAULT
+" set guifont=JetBrainsMonoNL_NFM:h14:cANSI:qDEFAULT
+set guifont=MesloLGS_Nerd_Font_Mono:h14:cANSI:qDEFAULT
 
 
 " SEARCH SETTING
@@ -158,6 +161,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 Plug 'preservim/nerdtree'
 
+Plug 'vim-airline/vim-airline'
+
 call plug#end()
 
 
@@ -168,4 +173,19 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 " close NERDTree after all files closed
 autocmd BufEnter * if (winnr('$') == 1 && exists('t:NERDTreeBufName') && bufname('%') == t:NERDTreeBufName) | q | endif
+
+
+" vim-airline
+
+function! WordCount()
+    let words = len(split(join(getline(1, '$')), '\W\+'))
+    return words . ' words'
+endfunction
+
+" display buffer number
+let g:airline_section_b = 'BN %n, %{WordCount()}'
+" display buffer number
+let g:airline_section_z = '%p%% l:%l/%L c:%c'
+" display names of different files in buffer
+let g:airline#extensions#tabline#enabled = 1
 
