@@ -1,0 +1,8 @@
+# ignore vim operation record files
+*~
+
+# ignore shotcut files
+*.lnk
+
+# ignore gvim 9.0 software files
+vim90/
