@@ -6,3 +6,6 @@
 
 # ignore gvim 9.0 software files
 vim90/
+
+# ignore plugin managed by vim-plug
+vimfiles/plugged/
