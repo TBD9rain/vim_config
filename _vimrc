@@ -159,7 +159,6 @@ autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitign
 " vim-plug
 " set plugin directory path
 let g:vim_plug_path = expand('<sfile>:p:h') . '/vimfiles/plugged'
-
 " load plugins
 call plug#begin(g:vim_plug_path)
 
@@ -173,7 +172,6 @@ call plug#end()
 
 
 " NERDTree
-
 " open NERDTree with vim starting
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
@@ -182,12 +180,10 @@ autocmd BufEnter * if (winnr('$') == 1 && exists('t:NERDTreeBufName') && bufname
 
 
 " vim-airline
-
 function! WordCount()
     let words = len(split(join(getline(1, '$')), '\W\+'))
     return words . ' words'
 endfunction
-
 " display buffer number
 let g:airline_section_b = 'BN %n, %{WordCount()}'
 " display buffer number

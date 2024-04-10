@@ -1,18 +1,13 @@
 # Quick deploy
 
 **Deployment after gvim installation:**
-- `git clone` this repository
-- move all files and directories to the vim location
-including invisible **.git** directory
-- install *yarn* and *node.js*
+- `git clone` this repository into vim installation directory
 - run `:PlugInstall` in vim command line to download plugins
 
 
 # Install gvim for windows
 
 The current gvim version is 9.0.1897 (x64) and the executable installation link is [vim\_9.0.1897](https://github.com/vim/vim-win32-installer/releases/download/v9.0.1897/gvim_9.0.1897_x64_signed.exe).
-
-The installation should be `C:\Program Files\Vim`.
 
 For more info, check [vim on github](https://github.com/vim/vim).
 
