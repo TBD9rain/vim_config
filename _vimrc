@@ -180,6 +180,9 @@ autocmd VimEnter * NERDTree | wincmd p
 autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
 " open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+" change display icons
+let g:NERDTreeDirArrowExpandable = '󰡏'
+let g:NERDTreeDirArrowCollapsible = '󰡍'
 
 
 " vim-airline
@@ -191,17 +194,42 @@ let g:airline_section_z = '%p%% %l/%L %c'
 let g:airline#extensions#tabline#enabled = 1
 " jump to previous buffer file before delete current buffer file
 nnoremap <c-b>d :bp<bar>bd#<CR>
+" enable powerline fonts dislpay
+let g:airline_powerline_fonts = 1
+" change display icons
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.readonly = '󱀰'
+let g:airline_symbols.whitespace = ''
 
 
 " Vim-DevIcons
 " change the default character when no match found
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
-
 " add or override individual additional filetypes
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󱜨'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = '󰻟'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sv'] = '󰻠'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['m'] = '󰯃'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tcl'] = '󰯃'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󰯃'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bin'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bit'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['doc'] = '󱎒'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['docx'] = '󱎒'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xls'] = '󱎏'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xlsx'] = '󱎏'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ppt'] = '󱎐'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pptx'] = '󱎐'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['zip'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['7c'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tar'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dll'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exe'] = ''
 
 
