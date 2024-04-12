@@ -91,7 +91,7 @@ set wrapmargin=2
 " always display status bar
 set laststatus=2
 " status bar string format
-set statusline=row=%04l/%04L,col=%04c\ %<%f
+set statusline=%<%f%M%R%=%y\ %p%%\ %l/%L\ %c
 " display current cursor position, redundent when tabline is displaying
 set ruler
 " always display tabline
@@ -156,80 +156,94 @@ autocmd BufNewFile *.c execute '0r ' . g:template_path . 'code.c'
 autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitignore'
 
 
-" vim-plug
-" set plugin directory path
-let g:vim_plug_path = expand('<sfile>:p:h') . '/vimfiles/plugged'
-" load plugins
-call plug#begin(g:vim_plug_path)
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-
-Plug 'preservim/nerdtree'
-
-Plug 'vim-airline/vim-airline'
-
-Plug 'ryanoasis/vim-devicons'
-
-call plug#end()
-
-
-" NERDTree
-" open NERDTree with vim starting
-autocmd VimEnter * NERDTree | wincmd p
-" execute 'q' if NERDTree is the only window remaining in current tab.
-autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
-" open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
-" change display icons
-let g:NERDTreeDirArrowExpandable = '󰡏'
-let g:NERDTreeDirArrowCollapsible = '󰡍'
-
-
-" vim-airline
-" display buffer number
-let g:airline_section_b = 'BufFile %n'
-" display buffer number
-let g:airline_section_z = '%p%% %l/%L %c'
-" display names of different files in buffer
-let g:airline#extensions#tabline#enabled = 1
-" jump to previous buffer file before delete current buffer file
+" BUFFER SETTING
+" allow buffer file changing without saving
+set hidden
+" kep-mapping delete current buffer file and change to previous buffer file
 nnoremap <c-b>d :bp<bar>bd#<CR>
-" enable powerline fonts dislpay
-let g:airline_powerline_fonts = 1
-" change display icons
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+
+
+" LOAD PLUGIN
+" load plugins when vim is opened with files not too big
+let g:file_size_thold = 2 * 1024 * 1024
+function! ShouldLoadPlugins() abort
+    let l:file_size = getfsize(expand('%:p'))
+    return l:file_size < g:file_size_thold || l:file_size == -1
+endfunction
+if ShouldLoadPlugins()
+    " vim-plug
+    " set plugin directory path
+    let g:vim_plug_path = expand('<sfile>:p:h') . '/vimfiles/plugged'
+    " load plugins
+    call plug#begin(g:vim_plug_path)
+
+        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+        Plug 'preservim/nerdtree'
+
+        Plug 'vim-airline/vim-airline'
+
+        Plug 'ryanoasis/vim-devicons'
+
+    call plug#end()
+
+
+    " NERDTree
+    " open NERDTree with vim starting
+    autocmd VimEnter * NERDTree | wincmd p
+    " execute 'q' if NERDTree is the only window remaining in current tab.
+    autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
+    " open the existing NERDTree on each new tab.
+    autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+    " change display icons
+    let g:NERDTreeDirArrowExpandable = '󰡏'
+    let g:NERDTreeDirArrowCollapsible = '󰡍'
+
+
+    " vim-airline
+    " display buffer number
+    let g:airline_section_b = 'BufFile %n'
+    " display buffer number
+    let g:airline_section_z = '%p%% %l/%L %c'
+    " display names of different files in buffer
+    let g:airline#extensions#tabline#enabled = 1
+    " enable powerline fonts dislpay
+    let g:airline_powerline_fonts = 1
+    " change display icons
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.readonly = '󱀰'
+    let g:airline_symbols.whitespace = ''
+
+
+    " Vim-DevIcons
+    " change the default character when no match found
+    let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
+    " add or override individual additional filetypes
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = '󰻟'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sv'] = '󰻠'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['m'] = '󰯃'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tcl'] = '󰯃'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󰯃'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bin'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bit'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['doc'] = '󱎒'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['docx'] = '󱎒'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xls'] = '󱎏'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xlsx'] = '󱎏'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ppt'] = '󱎐'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pptx'] = '󱎐'
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['zip'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['7c'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tar'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dll'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exe'] = ''
 endif
-let g:airline_symbols.readonly = '󱀰'
-let g:airline_symbols.whitespace = ''
-
-
-" Vim-DevIcons
-" change the default character when no match found
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
-" add or override individual additional filetypes
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = '󰻟'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sv'] = '󰻠'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['m'] = '󰯃'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tcl'] = '󰯃'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󰯃'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bin'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bit'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['doc'] = '󱎒'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['docx'] = '󱎒'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xls'] = '󱎏'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xlsx'] = '󱎏'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ppt'] = '󱎐'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pptx'] = '󱎐'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['zip'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['7c'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tar'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dll'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exe'] = ''
 
 
