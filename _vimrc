@@ -140,18 +140,18 @@ autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
 " LOAD TEMPLATE
 " set template relative path
 let g:template_path = expand('<sfile>:p:h') . '/vimfiles/template/'
-" verilog testbench template
-autocmd BufNewFile *_tb.v execute '0r ' . g:template_path . 'verilog_testbench_template.v'
 " verilog code template
-autocmd BufNewFile *{_tb}\@<!.v execute '0r ' . g:template_path . 'verilog_source_template.v'
-" systemverilog testbench template
-autocmd BufNewFile *_tb.sv execute '0r ' . g:template_path . 'systemverilog_testbench_template.sv'
-" systemverilog code template
-autocmd BufNewFile *{_tb}\@<!.sv execute '0r ' . g:template_path . 'systemverilog_source_template.sv'
+autocmd BufNewFile *{_tb}\@<!.v execute '0r ' . g:template_path . 'source.v'
+" verilog testbench template
+autocmd BufNewFile *_tb.v execute '0r ' . g:template_path . 'testbench.v'
 " modelsim do file template
-autocmd BufNewFile *.do execute '0r ' . g:template_path . 'modelsimDo.do'
+autocmd BufNewFile *.do execute '0r ' . g:template_path . 'modelsim.do'
+" systemverilog code template
+autocmd BufNewFile *{_tb}\@<!.sv execute '0r ' . g:template_path . 'source.sv'
+" systemverilog testbench template
+autocmd BufNewFile *_tb.sv execute '0r ' . g:template_path . 'testbench.sv'
 " c code template
-autocmd BufNewFile *.c execute '0r ' . g:template_path . 'code.c'
+autocmd BufNewFile *.c execute '0r ' . g:template_path . 'source.c'
 " git ignore template
 autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitignore'
 
