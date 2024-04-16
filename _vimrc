@@ -160,7 +160,7 @@ autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitign
 " allow buffer file changing without saving
 set hidden
 " kep-mapping delete current buffer file and change to previous buffer file
-nnoremap <c-b>d :bp<bar>bd#<CR>
+nnoremap <Leader>bd :bp<bar>bd#<CR>
 
 
 " LOAD PLUGIN
