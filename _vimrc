@@ -275,6 +275,10 @@ if ShouldLoadPlugins()
     nnoremap <silent> gr <Plug>(coc-references)
     " format selected code
     xmap <Leader>f <Plug>(coc-format-selected)
+
+
+    " automatic installation for coc extensions
+    let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-pyright']
 endif
 
 

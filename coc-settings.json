@@ -48,5 +48,12 @@
     "diagnostic.hintSign": ">>",
 
     //  CodeLens
-    "codeLens.enable": true
+    "codeLens.enable": true,
+
+    //  coc extensions
+    "json.enable": true,
+    "json.trace.server": "off",
+
+    "vimlsp.diagnostic.enable": true,
+    "vimlsp.trace.server": "off"
 }
