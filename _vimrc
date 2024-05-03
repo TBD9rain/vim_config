@@ -84,7 +84,7 @@ set lines=30
 set columns=90
 " divide long line into adaptive lines
 set wrap
-" divide line after break sumbols
+" divide line after break symbols
 set linebreak
 " space number between right edge of window and divided line
 set wrapmargin=2
@@ -103,8 +103,11 @@ colorscheme desert
 
 
 " FONT SETTING
-" font, size, other options
-set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
+" font:height:other options
+set encoding=utf-8
+" set guifont=DejaVuSansM_Nerd_Font_Mono:h14:cANSI:qDEFAULT
+" set guifont=JetBrainsMonoNL_NFM:h14:cANSI:qDEFAULT
+set guifont=MesloLGS_Nerd_Font_Mono:h14:cANSI:qDEFAULT
 
 
 " SEARCH SETTING
@@ -137,28 +140,72 @@ autocmd BufNewFile,BufRead .ps1 set filetype=ps1
 
 
 " LOAD TEMPLATE
+" set template relative path
+let g:template_path = expand('<sfile>:p:h') . '/vimfiles/template/'
 " verilog testbench template
-autocmd BufNewFile *{_tb}.v 0r C:\Program Files\Vim\vimfiles\template\verilog_testbench_template.v
+autocmd BufNewFile *_tb.v execute '0r ' . g:template_path . 'verilog_testbench_template.v'
 " verilog code template
-autocmd BufNewFile *{_tb}\@<!.v 0r C:\Program Files\Vim\vimfiles\template\verilog_source_template.v
+autocmd BufNewFile *{_tb}\@<!.v execute '0r ' . g:template_path . 'verilog_source_template.v'
 " systemverilog testbench template
-autocmd BufNewFile *{_tb}.sv 0r C:\Program Files\Vim\vimfiles\template\systemverilog_testbench_template.sv
+autocmd BufNewFile *_tb.sv execute '0r ' . g:template_path . 'systemverilog_testbench_template.sv'
 " systemverilog code template
-autocmd BufNewFile *{_tb}\@<!.sv 0r C:\Program Files\Vim\vimfiles\template\systemverilog_source_template.sv
+autocmd BufNewFile *{_tb}\@<!.sv execute '0r ' . g:template_path . 'systemverilog_source_template.sv'
 " modelsim do file template
-autocmd BufNewFile *.do 0r C:\Program Files\Vim\vimfiles\template\modelsimDo.do
-" C code template
-autocmd BufNewFile *.c 0r C:\Program Files\Vim\vimfiles\template\code.c
+autocmd BufNewFile *.do execute '0r ' . g:template_path . 'modelsimDo.do'
+" c code template
+autocmd BufNewFile *.c execute '0r ' . g:template_path . 'code.c'
 " git ignore template
-autocmd BufNewFile .gitignore 0r C:\Program Files\Vim\vimfiles\template\template.gitignore
+autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitignore'
 " powershell script for automatice simulation with matlab and modelsim 
-autocmd BufNewFile auto_sim.ps1 0r C:\Program Files\Vim\vimfiles\template\powershell_auto_sim_template.ps1
+autocmd BufNewFile auto_sim.ps1 execute '0r ' . g:template_path . 'powershell_auto_sim_template.ps1'
 
 
-" VIM-PLUG
-call plug#begin('C:/Program Files/Vim/vimfiles/plugged')
+" vim-plug
+" set plugin directory path
+let g:vim_plug_path = expand('<sfile>:p:h') . '/vimfiles/plugged'
+" load plugins
+call plug#begin(g:vim_plug_path)
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
+Plug 'preservim/nerdtree'
+
+Plug 'vim-airline/vim-airline'
+
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
+
+
+" NERDTree
+" open NERDTree with vim starting
+autocmd VimEnter * NERDTree | wincmd p
+" execute 'q' if NERDTree is the only window remaining in current tab.
+autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
+" open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+
+" vim-airline
+" display buffer number
+let g:airline_section_b = 'BufFile %n'
+" display buffer number
+let g:airline_section_z = '%p%% %l/%L %c'
+" display names of different files in buffer
+let g:airline#extensions#tabline#enabled = 1
+" jump to previous buffer file before delete current buffer file
+nnoremap <c-b>d :bp<bar>bd#<CR>
+
+
+" Vim-DevIcons
+" change the default character when no match found
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
+
+" add or override individual additional filetypes
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󱜨'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
+
 
