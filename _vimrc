@@ -279,6 +279,47 @@ if ShouldLoadPlugins()
 
     " automatic installation for coc extensions
     let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-pyright']
+
+
+    " verible
+    " generate verible.filelist
+    function! GetGitPath()
+        let l:git_path_pre = ''
+        let l:git_path_cur = fnamemodify(expand('%:p'), ':h')
+
+        while 1
+            if isdirectory(l:git_path_cur . '/.git')
+                break
+            elseif l:git_path_cur == l:git_path_pre
+                let l:git_path_cur = '.'
+                break
+            else
+                let l:git_path_pre = l:git_path_cur
+                let l:git_path_cur = fnamemodify(l:git_path_cur, ':h')
+            endif
+        endwhile
+
+        return l:git_path_cur
+    endfunction
+    function! AddVeribleFilelist()
+        call extend(g:verible_filelist, globpath(expand('%:p:h'), '**/*.v', 0, 1))
+        call extend(g:verible_filelist, globpath(expand('%:p:h'), '**/*.sv', 0, 1))
+
+        call sort(g:verible_filelist)
+        call uniq(g:verible_filelist)
+
+        call DeleteVeribleFilelist()
+        call writefile(g:verible_filelist, GetGitPath() . '/verible.filelist', 'a')
+    endfunction
+    function! DeleteVeribleFilelist()
+        let l:filelist_path = GetGitPath()
+        if filereadable(l:filelist_path . '/verible.filelist')
+            call delete(l:filelist_path . '/verible.filelist')
+        endif
+    endfunction
+    let g:verible_filelist = []
+    autocmd BufRead,BufNewFile *.v,*.sv call AddVeribleFilelist()
+    autocmd VimLeave * call DeleteVeribleFilelist()
 endif
 
 
