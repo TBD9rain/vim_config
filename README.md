@@ -2,14 +2,42 @@
 
 **Deployment after gvim installation:**
 - `git clone` this repository into vim installation directory
-- run `:PlugInstall` in vim command line to download plugins
+- install dependencies
+- install plugins with vim-plug
 
 
 # Install gvim for windows
 
 The current gvim version is 9.0.1897 (x64) and the executable installation link is [vim\_9.0.1897](https://github.com/vim/vim-win32-installer/releases/download/v9.0.1897/gvim_9.0.1897_x64_signed.exe).
 
-For more info, check [vim on github](https://github.com/vim/vim).
+For other versions or more info, check [vim on github](https://github.com/vim/vim).
+
+
+# Dependencies
+
+
+## chocolatey
+
+chocolatey is a package manager on windows. And it's a good choice for *yarn* and *node.js* installation.
+It can be installed with the following command in powershell with **administrative mode**.
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+```
+For more info, check [choco setup](https://docs.chocolatey.org/en-us/choco/setup).
+
+
+## yarn and nodejs
+
+After chocolatey installation, use the following commands to install ***yarn*** and ***node.js***.
+
+```
+choco install yarn
+choco install nodejs
+```
+
+For more info about chocolatey, check [Choco docs](https://docs.chocolatey.org/en-us/).
 
 
 # vim-plug
@@ -22,6 +50,21 @@ put it in the vim autoload directory,
 and the vim-plug will be ready to use after vim restarting.
 
 For more info, check [vim-plug](https://github.com/junegunn/vim-plug).
+
+
+# Nerd Fonts
+
+> Nerd Fonts is a project that patches developer targeted fonts
+with a high number of glyphs (icons).
+
+To display vim-airline symbols,
+Nerd Fonts are needed in vim.
+Nerd Fonts could be downloaded from
+[Nerd Fonts Download](https://www.nerdfonts.com/font-downloads).
+The [DejaVuSansMono Nerd Font](https://github.com/dejavu-fonts/dejavu-fonts),
+[JetBrainsMono Nerd Font](https://github.com/JetBrains/JetBrainsMono),
+or [Meslo Nerd Font](https://github.com/andreberg/Meslo-Font)
+is recommended.
 
 
 # NERDTree
@@ -48,20 +91,6 @@ Plug 'vim-airline/vim-airline'
 
 For more info, check [vim-airline](https://github.com/vim-airline/vim-airline)
 
-## Nerd Fonts
-
-> Nerd Fonts is a project that patches developer targeted fonts
-with a high number of glyphs (icons).
-
-To display vim-airline symbols,
-Nerd Fonts are needed in vim.
-Nerd Fonts could be downloaded from
-[Nerd Fonts Download](https://www.nerdfonts.com/font-downloads).
-The [DejaVuSansMono Nerd Font](https://github.com/dejavu-fonts/dejavu-fonts),
-[JetBrainsMono Nerd Font](https://github.com/JetBrains/JetBrainsMono),
-or [Meslo Nerd Font](https://github.com/andreberg/Meslo-Font)
-is recommended.
-
 
 # Vim-DevIcons
 
@@ -81,7 +110,7 @@ For more info, check [Vim-DevIcons](https://github.com/ryanoasis/vim-devicons).
 *markdown-preview.nvim* plugin is applied to preview markdown files with default web browser.
 The ***yarn*** and ***node.js*** are needed for *markdown-preview.nvim* installation.
 
-Add the following command in vim-plug block in _vimrc:
+Add the following command in vim-plug block in \_vimrc:
 ```
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 ```
@@ -89,27 +118,44 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 For more info, check [mark-preview.nvim](https://github.com/iamcco/markdown-preview.nvim).
 
 
-## chocolatey
+# coc.nvim
 
-*chocolatey* is a package manager on windows. And it's a good choice for *yarn* and *node.js* installation.
-It can be installed with the following command in powershell with **administrative mode**.
+coc.nvim provides a rich extension ecosystem and implemented
+the client features specified by Language Server Protocol (lsp).
+
+The coc.nvim (including coc extensions and language server) can be configured
+with the `coc-setting.json` file with json style.
+
+Add the following command in coc.nvim block in \_vimrc:
 ```
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
-```
-For more info, check [choco setup](https://docs.chocolatey.org/en-us/choco/setup).
-
-
-## yarn and nodejs
-
-After chocolatey installation, use the following commands to install ***yarn*** and ***node.js***.
-
-```
-choco install yarn
-choco install nodejs
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 ```
 
-For more info about chocolatey, check [Choco docs](https://docs.chocolatey.org/en-us/).
+For more info, check [coc.nvim](https://github.com/neoclide/coc.nvim).
+
+
+## Extensions
+
+- [**coc-json**](https://github.com/neoclide/coc-json), for json file editting
+- [**coc-vimlsp**](https://github.com/iamcco/coc-vimlsp), for vimscript
+- [**coc-pyright**](https://github.com/fannheyward/coc-pyright), for python
+
+
+## Language Server
+
+### Verible
+
+> Verible is a suite of SystemVerilog developer tools,
+> including a parser, style-linter, formatter and language server
+
+To configure the linter on style checking,
+modify the "verible-verilog-lint.config" file according to
+[Linter Rules](https://chipsalliance.github.io/verible/verilog_lint.html)
+
+To configure the formatter,
+modify the `args` in "coc-settings.json" for verible lsp and
+use `<path/to/verible-verilog-ls> --helpfull` for help.
+
+For more info, checkout [Verible](https://github.com/chipsalliance/verible)
 
 
