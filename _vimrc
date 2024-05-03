@@ -185,6 +185,8 @@ if ShouldLoadPlugins()
 
         Plug 'ryanoasis/vim-devicons'
 
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
     call plug#end()
 
 
@@ -244,6 +246,35 @@ if ShouldLoadPlugins()
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tar'] = ''
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dll'] = ''
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exe'] = ''
+
+
+    " coc.nvim
+    set updatetime=300
+    set signcolumn=yes
+    " trigger completion mannually
+    inoremap <silent><expr> <C-Space> coc#refresh()
+    " navigate items
+    inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+    inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : ""
+    " accept selected completion item or notify coc.nvim to format
+    " <C-g>u breaks current undo, starts a new undo
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
+        \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+    " set path of coc-settings.json
+    let g:coc_config_path = expand('<sfile>:p:h')
+    let g:coc_config_home = g:coc_config_path
+    " set json comment prefix
+    autocmd FileType json syntax match Comment +\/\/.\+$+
+    " error navigation
+    nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+    nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+    " code navigation
+    nnoremap <silent> gd <Plug>(coc-definition)
+    nnoremap <silent> gy <Plug>(coc-type-definition)
+    nnoremap <silent> gi <Plug>(coc-implementation)
+    nnoremap <silent> gr <Plug>(coc-references)
+    " format selected code
+    xmap <Leader>f <Plug>(coc-format-selected)
 endif
 
 

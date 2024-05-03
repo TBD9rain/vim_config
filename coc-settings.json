@@ -1,0 +1,52 @@
+{
+    //  coc setting
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.maxFileSize": "2MB",
+
+    //  completion setting
+    "suggest.autoTrigger": "always",
+    "suggest.noselect": false,
+    "suggest.enablePreselect": true,
+    "suggest.completionItemKindLabels": {
+        "text":             "",    //  "v"
+        "method":           "",    //  "f"
+        "function":         "󰊕",    //  "f"
+        "constructor":      "󰏖",    //  "f"
+        "field":            "",    //  "m"
+        "variable":         "󰫧",    //  "v"
+        "class":            "",    //  "C"
+        "interface":        "",    //  "I"
+        "module":           "M",    //  "M"
+        "property":         "",    //  "m"
+        "unit":             "U",    //  "U"
+        "value":            "󰎠",    //  "v"
+        "enum":             "E",    //  "E"
+        "keyword":          "",    //  "k"
+        "snippet":          "",    //  "S"
+        "color":            "",    //  "v"
+        "file":             "",    //  "F"
+        "reference":        "",    //  "r"
+        "folder":           "",    //  "F"
+        "enumMember":       "e",    //  "m"
+        "constant":         "󰏿",    //  "v"
+        "struct":           "",    //  "S"
+        "event":            "",    //  "E"
+        "operator":         "",    //  "O"
+        "typeParameter":    "T",    //  "T"
+        "default":          ""     //  ""
+    },
+
+    //  code diagnostic
+    "diagnostic.enable": true,
+    "diagnostic.enableMessage": "always",
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualText": false,
+    "diagnostic.errorSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.infoSign": "",
+    "diagnostic.hintSign": ">>",
+
+    //  CodeLens
+    "codeLens.enable": true
+}
