@@ -54,6 +54,8 @@ set mouse=a
 set showmode
 " display command
 set showcmd
+" switch buffer files without saving
+set hidden
 " auto new line after text is too long
 set textwidth=100
 
@@ -156,10 +158,10 @@ autocmd BufNewFile *.c execute '0r ' . g:template_path . 'source.c'
 autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitignore'
 
 
-" BUFFER SETTING
-" allow buffer file changing without saving
-set hidden
-" kep-mapping delete current buffer file and change to previous buffer file
+" KEY-MAPPING
+" set leader key
+let g:mapleader = ' '
+" delete current buffer file and change to previous buffer file
 nnoremap <Leader>bd :bp<bar>bd#<CR>
 
 
