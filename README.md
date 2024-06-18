@@ -159,3 +159,17 @@ use `<path/to/verible-verilog-ls> --helpfull` for help.
 For more info, checkout [Verible](https://github.com/chipsalliance/verible)
 
 
+# Spell Checking
+
+User spell checking files are stored at `<user_directory>/_vimfiles/spell/`
+for modifying without administrative access.
+The github repository [\_vimfiles](https://github.com/TBD9rain/_vimfiles)
+contains the spell checking files
+
+The `*.add` file with good words could be changed manually.
+After modifying `*.add`, use the following command in gvim to make it work:
+```
+:mkspell! <path_to/*.add>
+```
+
+

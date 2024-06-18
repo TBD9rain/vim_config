@@ -43,6 +43,11 @@ endfunction
 " TBD9rain defined settings
 " =========================
 
+" DISPLAY LANGUAGE
+set langmenu=en_US
+language messages en_US
+
+
 " BASIC SETTING
 " not compatible with Vi
 set nocompatible
@@ -94,7 +99,7 @@ set wrapmargin=2
 set laststatus=2
 " status bar string format
 set statusline=%<%f%M%R%=%y\ %p%%\ %l/%L\ %c
-" display current cursor position, redundent when tabline is displaying
+" display current cursor position, redundant when tabline is displaying
 set ruler
 " always display tabline
 set showtabline=2
@@ -113,7 +118,7 @@ set guifont=MesloLGS_Nerd_Font_Mono:h14:cANSI:qDEFAULT
 
 
 " SEARCH SETTING
-" match brakets
+" match brackets
 set showmatch
 " highlight search results
 set hlsearch
@@ -165,6 +170,12 @@ let g:mapleader = ' '
 nnoremap <Leader>bd :bp<bar>bd#<CR>
 
 
+" SPELLING CHECK
+set spell
+set spelllang=en_us
+set spellfile=~/_vimfiles/spell/en.utf-8.add
+
+
 " LOAD PLUGIN
 " load plugins when vim is opened with files not too big
 let g:file_size_thold = 2 * 1024 * 1024
@@ -211,7 +222,7 @@ if ShouldLoadPlugins()
     let g:airline_section_z = '%p%% %l/%L %c'
     " display names of different files in buffer
     let g:airline#extensions#tabline#enabled = 1
-    " enable powerline fonts dislpay
+    " enable powerline fonts display
     let g:airline_powerline_fonts = 1
     " change display icons
     if !exists('g:airline_symbols')
@@ -224,7 +235,7 @@ if ShouldLoadPlugins()
     " Vim-DevIcons
     " change the default character when no match found
     let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
-    " add or override individual additional filetypes
+    " add or override individual additional file types
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = '󰻟'
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sv'] = '󰻠'
@@ -253,7 +264,7 @@ if ShouldLoadPlugins()
     " coc.nvim
     set updatetime=300
     set signcolumn=yes
-    " trigger completion mannually
+    " trigger completion manually
     inoremap <silent><expr> <C-Space> coc#refresh()
     " navigate items
     inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"

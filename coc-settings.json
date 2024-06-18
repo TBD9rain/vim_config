@@ -57,7 +57,7 @@
     "vimlsp.diagnostic.enable": true,
     "vimlsp.trace.server": "off",
 
-    //  languae server
+    //  language server
     "languageserver": {
         "verible":{
             "enable": true,
