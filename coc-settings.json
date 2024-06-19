@@ -61,11 +61,11 @@
     "languageserver": {
         "verible":{
             "enable": true,
-            "command": "C:/Program Files/Vim/vimfiles/languageserver/verible-verilog-ls",
+            "command": "${userHome}/_vimfiles/languageserver/verible/verible-verilog-ls",
             "filetypes": ["verilog", "systemverilog"],
             "args": [
                 //  linting
-                "--rules_config=C:/Program Files/Vim/vimfiles/languageserver/verible-verilog-lint.config",
+                "--rules_config=${userHome}/_vimfiles/languageserver/verible/verible-verilog-lint.config",
                 //  formatting
                 "--indentation_spaces=4",
                 "--assignment_statement_alignment=align",

@@ -16,6 +16,21 @@ For other versions or more info, check [vim on github](https://github.com/vim/vi
 # Dependencies
 
 
+## \_vimfiles
+
+Files in [\_vimfiles](https://github.com/TBD9rain/_vimfiles) are necessary,
+including:
+
+- spell file
+- templates
+- icon configuration for Vim-DevIcons
+- language server
+
+The `g:my_vimfiles_path` should be the path of \_vimfiles directory in \_vimrc.
+The paths of the language server files should be
+aligned with the path of language server in \_vimfiles.
+
+
 ## chocolatey
 
 chocolatey is a package manager on windows. And it's a good choice for *yarn* and *node.js* installation.
@@ -101,6 +116,8 @@ Vim-DevIcons could be loaded by vim-plug with an extra command in the \_vimrc fi
 Plug 'ryanoasis/vim-devicons'
 ```
 
+The icon configuration file is under `<_vimfiles>/dev_icons`.
+
 The icons for different filetype could be customized.
 For more info, check [Vim-DevIcons](https://github.com/ryanoasis/vim-devicons).
 
@@ -148,6 +165,8 @@ For more info, check [coc.nvim](https://github.com/neoclide/coc.nvim).
 > Verible is a suite of SystemVerilog developer tools,
 > including a parser, style-linter, formatter and language server
 
+The verible language server and configurations are under `<_vimfiles>/languageserver/verible/`.
+
 To configure the linter on style checking,
 modify the "verible-verilog-lint.config" file according to
 [Linter Rules](https://chipsalliance.github.io/verible/verilog_lint.html)
@@ -161,10 +180,8 @@ For more info, checkout [Verible](https://github.com/chipsalliance/verible)
 
 # Spell Checking
 
-User spell checking files are stored at `<user_directory>/_vimfiles/spell/`
+User spell files are under `<_vimfiles>/spell/`
 for modifying without administrative access.
-The github repository [\_vimfiles](https://github.com/TBD9rain/_vimfiles)
-contains the spell checking files
 
 The `*.add` file with good words could be changed manually.
 After modifying `*.add`, use the following command in gvim to make it work:

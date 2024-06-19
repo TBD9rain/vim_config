@@ -131,6 +131,23 @@ set incsearch
 " set foldmethod=indent
 
 
+" KEY-MAPPING
+" set leader key
+let g:mapleader = ' '
+" delete current buffer file and change to previous buffer file
+nnoremap <Leader>bd :bp<bar>bd#<CR>
+
+
+" _vimfiles PATH
+let g:my_vimfiles_path = '~/_vimfiles'
+
+
+" SPELLING CHECK
+set spell
+set spelllang=en_us
+execute 'set spellfile=' . g:my_vimfiles_path . '/spell/en.utf-8.add'
+
+
 " FILE TYPE
 " verilog files
 autocmd BufNewFile,BufRead *.v set filetype=verilog
@@ -144,36 +161,8 @@ autocmd BufNewFile,BufRead *.do set filetype=tcl
 autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
 
 
-" LOAD TEMPLATE
-" set template relative path
-let g:template_path = expand('<sfile>:p:h') . '/vimfiles/template/'
-" verilog code template
-autocmd BufNewFile *{_tb}\@<!.v execute '0r ' . g:template_path . 'source.v'
-" verilog testbench template
-autocmd BufNewFile *_tb.v execute '0r ' . g:template_path . 'testbench.v'
-" modelsim do file template
-autocmd BufNewFile *.do execute '0r ' . g:template_path . 'modelsim.do'
-" systemverilog code template
-autocmd BufNewFile *{_tb}\@<!.sv execute '0r ' . g:template_path . 'source.sv'
-" systemverilog testbench template
-autocmd BufNewFile *_tb.sv execute '0r ' . g:template_path . 'testbench.sv'
-" c code template
-autocmd BufNewFile *.c execute '0r ' . g:template_path . 'source.c'
-" git ignore template
-autocmd BufNewFile .gitignore execute '0r ' . g:template_path . 'template.gitignore'
-
-
-" KEY-MAPPING
-" set leader key
-let g:mapleader = ' '
-" delete current buffer file and change to previous buffer file
-nnoremap <Leader>bd :bp<bar>bd#<CR>
-
-
-" SPELLING CHECK
-set spell
-set spelllang=en_us
-set spellfile=~/_vimfiles/spell/en.utf-8.add
+" TEMPLATES
+execute 'source ' . g:my_vimfiles_path . '/template/config.vim'
 
 
 " LOAD PLUGIN
@@ -233,32 +222,7 @@ if ShouldLoadPlugins()
 
 
     " Vim-DevIcons
-    " change the default character when no match found
-    let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '󰈔'
-    " add or override individual additional file types
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['v'] = '󰻟'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sv'] = '󰻠'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['m'] = '󰯃'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tcl'] = '󰯃'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '󰯃'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '󰍔'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bin'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bit'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['doc'] = '󱎒'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['docx'] = '󱎒'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xls'] = '󱎏'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xlsx'] = '󱎏'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ppt'] = '󱎐'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pptx'] = '󱎐'
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['zip'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['7c'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tar'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dll'] = ''
-    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exe'] = ''
+    execute 'source ' . g:my_vimfiles_path . '/dev_icons/icon_config.vim'
 
 
     " coc.nvim
@@ -274,8 +238,7 @@ if ShouldLoadPlugins()
     inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
         \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
     " set path of coc-settings.json
-    let g:coc_config_path = expand('<sfile>:p:h')
-    let g:coc_config_home = g:coc_config_path
+    let g:coc_config_home = expand('<sfile>:p:h')
     " set json comment prefix
     autocmd FileType json syntax match Comment +\/\/.\+$+
     " error navigation
