@@ -26,9 +26,8 @@ including:
 - icon configuration for Vim-DevIcons
 - language server
 
-The `g:my_vimfiles_path` should be the path of \_vimfiles directory in \_vimrc.
-The paths of the language server files should be
-aligned with the path of language server in \_vimfiles.
+The `g:my_vimfiles_path` in `_vimrc` should be the path of `_vimfiles` directory.
+The paths in `coc-setting.json` should be aligned with the paths in `_vimfiles`.
 
 
 ## chocolatey
@@ -188,5 +187,27 @@ After modifying `*.add`, use the following command in gvim to make it work:
 ```
 :mkspell! <path_to/*.add>
 ```
+
+
+# UltiSnips
+
+> UltiSnips provides snippet management for the Vim editor.
+
+A snippet is a short piece of text that is either re-used often or contains a lot of redundant text.
+
+The UltiSnips has following features:
+- tabstop with optional default text, predefined text items
+- tabstop mirror with text transformation
+- regular expression trigger
+- shell, vim script, or python invocation
+
+Add the following command in vim-plug block in \_vimrc:
+```
+Plug 'SirVer/ultisnips'
+```
+
+The snippets are under `<_vimfiles>/ultisnips`.
+
+For more info, check [UltiSnipts](https://github.com/SirVer/ultisnips).
 
 

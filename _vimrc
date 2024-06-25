@@ -189,6 +189,8 @@ if ShouldLoadPlugins()
 
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+        Plug 'SirVer/ultisnips'
+
     call plug#end()
 
 
@@ -296,6 +298,18 @@ if ShouldLoadPlugins()
     let g:verible_filelist = []
     autocmd BufRead,BufNewFile *.v,*.sv call AddVeribleFilelist()
     autocmd VimLeave * call DeleteVeribleFilelist()
+
+
+    " ultisnips
+    " settings
+    let g:UltiSnipsEnableSnipMate = 0
+    let g:UltiSnipsEditSplit = 'vertical'
+    let g:UltiSnipsSnippetDirectories = [g:my_vimfiles_path.'/ultisnips']
+    " trigger key-mapping
+    let g:UltiSnipsJumpOrExpandTrigger = '<C-Tab>'
+    let g:UltiSnipsListSnippets = '<C-S-Tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<C-]>'
+    let g:UltiSnipsJumpBackwardTrigger = '<C-[>'
 endif
 
 
