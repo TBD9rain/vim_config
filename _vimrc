@@ -191,6 +191,8 @@ if ShouldLoadPlugins()
 
         Plug 'SirVer/ultisnips'
 
+        Plug 'morhetz/gruvbox'
+
     call plug#end()
 
 
@@ -310,6 +312,12 @@ if ShouldLoadPlugins()
     let g:UltiSnipsListSnippets = '<C-S-Tab>'
     let g:UltiSnipsJumpForwardTrigger = '<C-]>'
     let g:UltiSnipsJumpBackwardTrigger = '<C-[>'
+
+
+    " gruvbox color scheme
+    set background=dark
+    let g:gruvbox_contrast_dark = 'hard'
+    colorscheme gruvbox
 endif
 
 
