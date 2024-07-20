@@ -8,9 +8,10 @@
 
 # Install gvim for windows
 
-The current gvim version is 9.0.1897 (x64) and the executable installation link is [vim\_9.0.1897](https://github.com/vim/vim-win32-installer/releases/download/v9.0.1897/gvim_9.0.1897_x64_signed.exe).
+The current gvim version is 9.1.0 (x64).
+The executable installation link is [vim\_9.1.0](https://github.com/vim/vim-win32-installer/releases/tag/v9.1.0).
 
-For other versions or more info, check [vim on github](https://github.com/vim/vim).
+For other versions or more info, check [vim.org](https://www.vim.org/) or [vim on github](https://github.com/vim/vim).
 
 
 # Dependencies

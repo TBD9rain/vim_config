@@ -5,8 +5,8 @@
 # ignore shotcut files
 *.lnk
 
-# ignore gvim 9.0 software files
-vim90/
+# ignore gvim 9.1.0 software files
+vim91/
 
 # ignore plugin managed by vim-plug
 vimfiles/plugged/
