@@ -1,12 +1,4 @@
-# ignore vim operation record files
-*.swp
+# vim temperory files
 *~
-
-# ignore shotcut files
-*.lnk
-
-# ignore gvim 9.0 software files
-vim90/
-
-# ignore plugin managed by vim-plug
-vimfiles/plugged/
+*.un~
+*.swp

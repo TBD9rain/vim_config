@@ -1,44 +1,3 @@
-" Vim with all enhancements
-source $VIMRUNTIME/vimrc_example.vim
-
-" Use the internal diff if available.
-" Otherwise use the special 'diffexpr' for Windows.
-if &diffopt !~# 'internal'
-  set diffexpr=MyDiff()
-endif
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg1 = substitute(arg1, '!', '\!', 'g')
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg2 = substitute(arg2, '!', '\!', 'g')
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let arg3 = substitute(arg3, '!', '\!', 'g')
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      if empty(&shellxquote)
-        let l:shxq_sav = ''
-        set shellxquote&
-      endif
-      let cmd = '"' . $VIMRUNTIME . '\diff"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  let cmd = substitute(cmd, '!', '\!', 'g')
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-  if exists('l:shxq_sav')
-    let &shellxquote=l:shxq_sav
-  endif
-endfunction
-
 " =========================
 " TBD9rain defined settings
 " =========================
@@ -59,10 +18,21 @@ set mouse=a
 set showmode
 " display command
 set showcmd
-" switch buffer files without saving
+" enable switching buffer files without saving
 set hidden
 " auto new line after text is too long
-set textwidth=100
+set textwidth=120
+" set backspace functions
+set backspace=indent,eol,start
+" undo file
+if has("persistent_undo")
+    set undofile
+endif
+" command completion
+set wildmenu
+set wildmode=list:lastused,longest:full
+" jump to the last edition
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 
 " INDENT SETTING
@@ -86,12 +56,12 @@ set relativenumber
 " highlight cursor
 set cursorline
 " line
-set lines=30
+set lines=40
 " column
-set columns=90
+set columns=120
 " divide long line into adaptive lines
-set wrap
-" divide line after break symbols
+set nowrap
+" divide line after word boundary
 set linebreak
 " space number between right edge of window and divided line
 set wrapmargin=2
@@ -105,9 +75,8 @@ set ruler
 set showtabline=2
 " tab page maximum
 set tabpagemax=20
-" color scheme
+" built-in color scheme
 colorscheme desert
-
 
 " FONT SETTING
 " font:height:other options
@@ -138,8 +107,8 @@ let g:mapleader = ' '
 nnoremap <Leader>bd :bp<bar>bd#<CR>
 
 
-" _vimfiles PATH
-let g:my_vimfiles_path = '~/_vimfiles'
+" vim_files PATH
+let g:my_vimfiles_path = '~/vim_files'
 
 
 " SPELLING CHECK
@@ -175,7 +144,7 @@ endfunction
 if ShouldLoadPlugins()
     " vim-plug
     " set plugin directory path
-    let g:vim_plug_path = expand('<sfile>:p:h') . '/vimfiles/plugged'
+    let g:vim_plug_path = '~/vimfiles/plugged'
     " load plugins
     call plug#begin(g:vim_plug_path)
 
@@ -319,5 +288,4 @@ if ShouldLoadPlugins()
     let g:gruvbox_contrast_dark = 'hard'
     colorscheme gruvbox
 endif
-
 

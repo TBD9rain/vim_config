@@ -3,6 +3,7 @@
     "coc.preferences.extensionUpdateCheck": "weekly",
     "coc.preferences.maxFileSize": "2MB",
 
+
     //  completion setting
     "suggest.autoTrigger": "always",
     "suggest.noselect": false,
@@ -36,6 +37,7 @@
         "default":          ""     //  ""
     },
 
+
     //  code diagnostic
     "diagnostic.enable": true,
     "diagnostic.enableMessage": "always",
@@ -47,8 +49,10 @@
     "diagnostic.infoSign": "",
     "diagnostic.hintSign": ">>",
 
+
     //  CodeLens
     "codeLens.enable": true,
+
 
     //  coc extensions
     "json.enable": true,
@@ -57,15 +61,16 @@
     "vimlsp.diagnostic.enable": true,
     "vimlsp.trace.server": "off",
 
+
     //  language server
     "languageserver": {
         "verible":{
             "enable": true,
-            "command": "${userHome}/_vimfiles/languageserver/verible/verible-verilog-ls",
+            "command": "${userHome}/vim_files/languageserver/verible/verible-verilog-ls",
             "filetypes": ["verilog", "systemverilog"],
             "args": [
                 //  linting
-                "--rules_config=${userHome}/_vimfiles/languageserver/verible/verible-verilog-lint.config",
+                "--rules_config=${userHome}/vim_files/languageserver/verible/verible-verilog-lint.config",
                 //  formatting
                 "--indentation_spaces=4",
                 "--assignment_statement_alignment=align",
