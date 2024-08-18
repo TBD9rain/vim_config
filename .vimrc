@@ -134,6 +134,39 @@ autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
 execute 'source ' . g:my_vimfiles_path . '/template/config.vim'
 
 
+" FORMATTING FUNCTIONS
+" right align the first specific character of each line at tabstop
+function! RAlignLastChar(char) range
+    " find the rightest character
+    let l:longest_line = a:firstline
+    let l:max_col = 0
+    for l:line_idx in range(a:firstline, a:lastline)
+        let l:line = getline(l:line_idx)
+        let l:col = stridx(l:line, a:char)
+        if l:col > l:max_col
+            let l:longest_line = l:line_idx
+            let l:max_col = l:col
+        endif
+    endfor
+
+    " add space to make the rightest character at tabstop
+    let l:line = getline(l:longest_line)
+    let l:new_line = l:line[:l:max_col - 1] . repeat(' ', (4 - l:max_col % 4)) . l:line[l:max_col:]
+    call setline(l:longest_line, l:new_line)
+    let l:max_col = stridx(l:new_line, a:char)
+
+    " align other lines
+    for l:line_idx in range(a:firstline, a:lastline)
+        let l:line = getline(l:line_idx)
+        let l:col = stridx(l:line, a:char)
+        if l:col != -1 && l:col < l:max_col
+            let l:new_line = l:line[:l:col - 1] . repeat(' ', l:max_col - l:col) . l:line[l:col:]
+            call setline(l:line_idx, l:new_line)
+        endif
+    endfor
+endfunction
+
+
 " LOAD PLUGIN
 " load plugins when vim is opened with files not too big
 let g:file_size_thold = 2 * 1024 * 1024
