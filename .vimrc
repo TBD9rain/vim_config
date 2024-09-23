@@ -30,7 +30,7 @@ if has("persistent_undo")
 endif
 " command completion
 set wildmenu
-set wildmode=list:lastused,longest:full
+set wildmode=list:full
 " jump to the last edition
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -60,7 +60,7 @@ set lines=40
 " column
 set columns=120
 " divide long line into adaptive lines
-set nowrap
+set wrap
 " divide line after word boundary
 set linebreak
 " space number between right edge of window and divided line
@@ -301,7 +301,7 @@ if ShouldLoadPlugins()
     endfunction
     let g:verible_filelist = []
     autocmd BufRead,BufNewFile *.v,*.sv call AddVeribleFilelist()
-    autocmd VimLeave * call DeleteVeribleFilelist()
+    " autocmd VimLeave * call DeleteVeribleFilelist()
 
 
     " ultisnips

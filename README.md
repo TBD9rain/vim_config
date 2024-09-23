@@ -175,8 +175,8 @@ Language servers path is set to the `<usr>/vim_files/languageserver` by default.
 > Verible is a suite of SystemVerilog developer tools,
 > including a parser, style-linter, formatter and language server
 
-Install Verible from [Verible Release](https://github.com/chipsalliance/verible/releases).
-
+Download Verible from [Verible Release](https://github.com/chipsalliance/verible/releases).
+It is suggested to install Verible in the path: `/~language_server/verible/`.
 
 The configuration file are under `<vim_files>/languageserver/verible/` by default.
 
