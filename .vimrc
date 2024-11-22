@@ -128,6 +128,8 @@ autocmd BufNewFile,BufRead *.c set filetype=c
 autocmd BufNewFile,BufRead *.do set filetype=tcl
 " git ignore files
 autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
+" binary files
+autocmd BufReadPre *.bin set binary
 
 
 " TEMPLATES
