@@ -267,43 +267,42 @@ if ShouldLoadPlugins()
 
     " verible
     " generate verible.filelist
-    function! GetGitPath()
-        let l:git_path_pre = ''
-        let l:git_path_cur = fnamemodify(expand('%:p'), ':h')
+    function! GenVeribleFilelist()
+        " find nearest git repository
+        let l:path_pre = ''
+        let l:path_cur = fnamemodify(expand('%:p'), ':h')
 
         while 1
-            if isdirectory(l:git_path_cur . '/.git')
+            if isdirectory(l:path_cur . '/.git')
                 break
-            elseif l:git_path_cur == l:git_path_pre
-                let l:git_path_cur = '.'
+            elseif l:path_cur == l:path_pre
+                let l:path_cur = '.'
                 break
             else
-                let l:git_path_pre = l:git_path_cur
-                let l:git_path_cur = fnamemodify(l:git_path_cur, ':h')
+                let l:path_pre = l:path_cur
+                let l:path_cur = fnamemodify(l:path_cur, ':h')
             endif
         endwhile
 
-        return l:git_path_cur
-    endfunction
-    function! AddVeribleFilelist()
-        call extend(g:verible_filelist, globpath(expand('%:p:h'), '**/*.v', 0, 1))
-        call extend(g:verible_filelist, globpath(expand('%:p:h'), '**/*.sv', 0, 1))
+        let l:filelist_path = l:path_cur
 
-        call sort(g:verible_filelist)
-        call uniq(g:verible_filelist)
+        " add .v and .sv into filelist
+        let l:filelist = []
+        call extend(l:filelist, globpath(l:filelist_path, '**/*.v', 0, 1))
+        call extend(l:filelist, globpath(l:filelist_path, '**/*.sv', 0, 1))
 
-        call DeleteVeribleFilelist()
-        call writefile(g:verible_filelist, GetGitPath() . '/verible.filelist', 'a')
-    endfunction
-    function! DeleteVeribleFilelist()
-        let l:filelist_path = GetGitPath()
+        call sort(l:filelist)
+        call uniq(l:filelist)
+
+        " delete previous verible.filelist
         if filereadable(l:filelist_path . '/verible.filelist')
             call delete(l:filelist_path . '/verible.filelist')
         endif
+
+        " write verible.filelist
+        call writefile(l:filelist, l:filelist_path . '/verible.filelist', 'a')
     endfunction
-    let g:verible_filelist = []
-    autocmd BufRead,BufNewFile *.v,*.sv call AddVeribleFilelist()
-    " autocmd VimLeave * call DeleteVeribleFilelist()
+    autocmd BufReadPre,BufNewFile,BufWritePost *.v,*.sv call GenVeribleFilelist()
 
 
     " ultisnips
