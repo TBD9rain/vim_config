@@ -1,4 +1,27 @@
-# vim temperory files
+#======================================
+# snippets from Ultisnips are available
+#======================================
+
+#--------------------
+# Vim temporary files
+#--------------------
+
 *~
 *.un~
 *.swp
+
+
+#----------
+# Vim files
+#----------
+
+vim_files
+
+
+#-----------------
+# language servers
+#-----------------
+
+language_server
+
+

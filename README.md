@@ -45,7 +45,7 @@ including:
 
 The `g:my_vimfiles_path` in `.vimrc` should be the path of `_vimfiles` directory.
 The paths in `coc-setting.json` should be aligned with the paths in `_vimfiles`.
-By default, `vim_files` could be under `<usr>/`.
+By default, `vim_files` is under `vim_config` directory and ignore by .gitignore.
 
 
 ## chocolatey

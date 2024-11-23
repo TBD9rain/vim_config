@@ -108,7 +108,7 @@ nnoremap <Leader>bd :bp<bar>bd#<CR>
 
 
 " vim_files PATH
-let g:my_vimfiles_path = '~/vim_files'
+let g:my_vimfiles_path = expand('<sfile>:p:h') . '/vim_files'
 
 
 " SPELLING CHECK
