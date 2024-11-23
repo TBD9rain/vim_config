@@ -43,9 +43,9 @@ including:
 - icon configuration for Vim-DevIcons
 - language server configuration
 
-The `g:my_vimfiles_path` in `.vimrc` should be the path of `_vimfiles` directory.
-The paths in `coc-setting.json` should be aligned with the paths in `_vimfiles`.
-By default, `vim_files` could be under `<usr>/`.
+The `g:my_vimfiles_path` in `.vimrc` should be the path of `vim_files` directory.
+The paths in `coc-setting.json` should be aligned with the paths in `vim_files`.
+By default, `vim_files` is under `vim_config` directory and ignore by .gitignore.
 
 
 ## chocolatey
@@ -193,7 +193,7 @@ For more info, checkout [Verible](https://github.com/chipsalliance/verible)
 
 # Spell Checking
 
-User spell files are under `<_vimfiles>/spell/`
+User spell files are under `<vim_files>/spell/`
 for modifying without administrative access.
 
 The `*.add` file with good words could be changed manually.
@@ -220,7 +220,7 @@ Add the following command in vim-plug block in .vimrc:
 Plug 'SirVer/ultisnips'
 ```
 
-The snippets are under `<_vimfiles>/ultisnips`.
+The snippets are under `<vim_files>/ultisnips`.
 
 For more info, check [UltiSnipts](https://github.com/SirVer/ultisnips).
 
