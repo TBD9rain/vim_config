@@ -1,13 +1,19 @@
-" =========================
-" TBD9rain defined settings
-" =========================
+"=======================
+"   TBD9rain VIM SETTING
+"=======================
 
-" DISPLAY LANGUAGE
+"-------------------
+"   Language Setting
+"-------------------
+
 set langmenu=en_US
 language messages en_US
 
 
-" BASIC SETTING
+"----------------
+"   Basic Setting
+"----------------
+
 " not compatible with Vi
 set nocompatible
 " highlight syntax word
@@ -35,7 +41,10 @@ set wildmode=list:full
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 
-" INDENT SETTING
+"-----------------
+"   Indent Setting
+"-----------------
+
 " keep indent after Enter
 set autoindent
 " tab width in insert mode
@@ -48,7 +57,10 @@ set expandtab
 set softtabstop=4
 
 
-" DISPLAY SETTING
+"------------------
+"   Display Setting
+"------------------
+
 " display line number
 set number
 " display relative line number
@@ -78,15 +90,22 @@ set tabpagemax=20
 " built-in color scheme
 colorscheme desert
 
-" FONT SETTING
-" font:height:other options
+
+"---------------
+"   Font Setting
+"---------------
+
 set encoding=utf-8
+" font:height:other options
 " set guifont=DejaVuSansM_Nerd_Font_Mono:h14:cANSI:qDEFAULT
 " set guifont=JetBrainsMonoNL_NFM:h14:cANSI:qDEFAULT
 set guifont=MesloLGS_Nerd_Font_Mono:h14:cANSI:qDEFAULT
 
 
-" SEARCH SETTING
+"-----------------
+"   Search Setting
+"-----------------
+
 " match brackets
 set showmatch
 " highlight search results
@@ -95,29 +114,39 @@ set hlsearch
 set incsearch
 
 
-" CONTENT FOLD SETTING
+"-----------------------
+"   Content Fold Setting
+"-----------------------
+
 " creates folds according to indent
 " set foldmethod=indent
 
 
-" KEY-MAPPING
-" set leader key
-let g:mapleader = ' '
-" delete current buffer file and change to previous buffer file
-nnoremap <Leader>bd :bp<bar>bd#<CR>
-
+"------------
+"   File Path
+"------------
 
 " vim_files PATH
 let g:my_vimfiles_path = expand('<sfile>:p:h') . '/vim_files'
+" set plugin directory path
+let g:vim_plug_path = '~/vimfiles/plugged'
+" set path of coc-settings.json
+let g:coc_config_home = expand('<sfile>:p:h')
 
 
-" SPELLING CHECK
+"-----------------
+"   Spelling Check
+"-----------------
+
 set spell
 set spelllang=en_us
 execute 'set spellfile=' . g:my_vimfiles_path . '/spell/en.utf-8.add'
 
 
-" FILE TYPE
+"------------
+"   File Type
+"------------
+
 " verilog files
 autocmd BufNewFile,BufRead *.v set filetype=verilog
 " systemverilog files
@@ -130,13 +159,21 @@ autocmd BufNewFile,BufRead *.do set filetype=tcl
 autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
 " binary files
 autocmd BufReadPre *.bin set binary
+" set json comment prefix
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 
-" TEMPLATES
+"------------
+"   Templates
+"------------
+
 execute 'source ' . g:my_vimfiles_path . '/template/config.vim'
 
 
-" FORMATTING FUNCTIONS
+"-----------------------
+"   Formatting Functions
+"-----------------------
+
 " right align the first specific character of each line at tabstop
 function! RAlignLastChar(char) range
     " find the rightest character
@@ -169,103 +206,94 @@ function! RAlignLastChar(char) range
 endfunction
 
 
-" LOAD PLUGIN
+"--------------
+"   Load Plugin
+"--------------
+
 " load plugins when vim is opened with files not too big
 let g:file_size_thold = 2 * 1024 * 1024
 function! ShouldLoadPlugins() abort
     let l:file_size = getfsize(expand('%:p'))
     return l:file_size < g:file_size_thold || l:file_size == -1
 endfunction
-if ShouldLoadPlugins()
-    " vim-plug
-    " set plugin directory path
-    let g:vim_plug_path = '~/vimfiles/plugged'
-    " load plugins
-    call plug#begin(g:vim_plug_path)
 
+" vim-plug
+" load plugins
+call plug#begin(g:vim_plug_path)
+
+    Plug 'morhetz/gruvbox'
+
+    Plug 'vim-airline/vim-airline'
+
+    Plug 'preservim/nerdtree'
+
+    Plug 'ryanoasis/vim-devicons'
+
+    if ShouldLoadPlugins()
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-
-        Plug 'preservim/nerdtree'
-
-        Plug 'vim-airline/vim-airline'
-
-        Plug 'ryanoasis/vim-devicons'
-
-        Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
         Plug 'SirVer/ultisnips'
 
-        Plug 'morhetz/gruvbox'
-
-    call plug#end()
-
-
-    " NERDTree
-    " open NERDTree with vim starting
-    autocmd VimEnter * NERDTree | wincmd p
-    " execute 'q' if NERDTree is the only window remaining in current tab.
-    autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
-    " open the existing NERDTree on each new tab.
-    autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
-    " change display icons
-    let g:NERDTreeDirArrowExpandable = '󰡏'
-    let g:NERDTreeDirArrowCollapsible = '󰡍'
-
-
-    " vim-airline
-    " display buffer number
-    let g:airline_section_b = 'BufFile %n'
-    " display buffer number
-    let g:airline_section_z = '%p%% %l/%L %c'
-    " display names of different files in buffer
-    let g:airline#extensions#tabline#enabled = 1
-    " enable powerline fonts display
-    let g:airline_powerline_fonts = 1
-    " change display icons
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
     endif
-    let g:airline_symbols.readonly = '󱀰'
-    let g:airline_symbols.whitespace = ''
 
+call plug#end()
 
-    " Vim-DevIcons
-    execute 'source ' . g:my_vimfiles_path . '/dev_icons/icon_config.vim'
+" gruvbox color scheme
 
+set background=dark
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+
+" vim-airline
+
+" display buffer number
+let g:airline_section_b = 'BufFile %n'
+" display buffer number
+let g:airline_section_z = '%p%% %l/%L %c'
+" display names of different files in buffer
+let g:airline#extensions#tabline#enabled = 1
+" enable powerline fonts display
+let g:airline_powerline_fonts = 1
+" change display icons
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.readonly = '󱀰'
+let g:airline_symbols.whitespace = ''
+
+" NERDTree
+
+" open NERDTree with vim starting
+autocmd VimEnter * NERDTree | wincmd p
+" execute 'q' if NERDTree is the only window remaining in current tab.
+autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
+" open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+" change display icons
+let g:NERDTreeDirArrowExpandable = '󰡏'
+let g:NERDTreeDirArrowCollapsible = '󰡍'
+
+" Vim-DevIcons
+
+execute 'source ' . g:my_vimfiles_path . '/dev_icons/icon_config.vim'
+
+if ShouldLoadPlugins()
+    " UltiSnips
+
+    let g:UltiSnipsEnableSnipMate = 0
+    let g:UltiSnipsEditSplit = 'vertical'
+    let g:UltiSnipsSnippetDirectories = [g:my_vimfiles_path.'/ultisnips']
 
     " coc.nvim
+
     set updatetime=300
     set signcolumn=yes
-    " trigger completion manually
-    inoremap <silent><expr> <C-Space> coc#refresh()
-    " navigate items
-    inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-    inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : ""
-    " accept selected completion item or notify coc.nvim to format
-    " <C-g>u breaks current undo, starts a new undo
-    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
-        \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
-    " set path of coc-settings.json
-    let g:coc_config_home = expand('<sfile>:p:h')
-    " set json comment prefix
-    autocmd FileType json syntax match Comment +\/\/.\+$+
-    " error navigation
-    nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-    nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
-    " code navigation
-    nnoremap <silent> gd <Plug>(coc-definition)
-    nnoremap <silent> gy <Plug>(coc-type-definition)
-    nnoremap <silent> gi <Plug>(coc-implementation)
-    nnoremap <silent> gr <Plug>(coc-references)
-    " format selected code
-    xmap <Leader>f <Plug>(coc-format-selected)
-
-
     " automatic installation for coc extensions
     let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-pyright']
 
+    " verible language server
 
-    " verible
     " generate verible.filelist
     function! GenVeribleFilelist()
         " find nearest git repository
@@ -303,23 +331,48 @@ if ShouldLoadPlugins()
         call writefile(l:filelist, l:filelist_path . '/verible.filelist', 'a')
     endfunction
     autocmd BufReadPre,BufNewFile,BufWritePost *.v,*.sv call GenVeribleFilelist()
+endif
 
+
+
+"--------------
+"   Key Mapping
+"--------------
+
+" set leader key
+let g:mapleader = ' '
+" delete current buffer file and change to previous buffer file
+nnoremap <Leader>bd :bp<bar>bd#<CR>
+
+if ShouldLoadPlugins()
+    " coc.nvim
+
+    " trigger completion manually
+    inoremap <silent><expr> <C-Space> coc#refresh()
+    " navigate items
+    inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+    inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : ""
+    " accept selected completion item or notify coc.nvim to format
+    " <C-g>u breaks current undo, starts a new undo
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
+        \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+    " error navigation
+    nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+    nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+    " code navigation
+    nnoremap <silent> gd <Plug>(coc-definition)
+    nnoremap <silent> gy <Plug>(coc-type-definition)
+    nnoremap <silent> gi <Plug>(coc-implementation)
+    nnoremap <silent> gr <Plug>(coc-references)
+    " format selected code
+    xmap <Leader>f <Plug>(coc-format-selected)
 
     " ultisnips
-    " settings
-    let g:UltiSnipsEnableSnipMate = 0
-    let g:UltiSnipsEditSplit = 'vertical'
-    let g:UltiSnipsSnippetDirectories = [g:my_vimfiles_path.'/ultisnips']
+
     " trigger key-mapping
     let g:UltiSnipsJumpOrExpandTrigger = '<C-Tab>'
     let g:UltiSnipsListSnippets = '<C-S-Tab>'
     let g:UltiSnipsJumpForwardTrigger = '<C-]>'
     let g:UltiSnipsJumpBackwardTrigger = '<C-[>'
-
-
-    " gruvbox color scheme
-    set background=dark
-    let g:gruvbox_contrast_dark = 'hard'
-    colorscheme gruvbox
 endif
 
