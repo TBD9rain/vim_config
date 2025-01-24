@@ -16,8 +16,6 @@ language messages en_US
 
 " not compatible with Vi
 set nocompatible
-" highlight syntax word
-syntax on
 " activate operations with mouse
 set mouse=a
 " display mode
@@ -144,30 +142,19 @@ execute 'set spellfile=' . g:my_vimfiles_path . '/spell/en.utf-8.add'
 
 
 "------------
-"   File Type
+"   My Syntax
 "------------
 
-" verilog files
-autocmd BufNewFile,BufRead *.v set filetype=verilog
-" systemverilog files
-autocmd BufNewFile,BufRead *.sv set filetype=systemverilog
-" c files
-autocmd BufNewFile,BufRead *.c set filetype=c
-" modelsim do files
-autocmd BufNewFile,BufRead *.do set filetype=tcl
-" git ignore files
-autocmd BufNewFile,BufRead .gitignore set filetype=gitignore
-" binary files
-autocmd BufReadPre *.bin set binary
-" set json comment prefix
-autocmd FileType json syntax match Comment +\/\/.\+$+
+" highlight syntax word
+syntax on
+execute 'source ' . g:my_vimfiles_path . '/syntax/load.vim'
 
 
-"------------
-"   Templates
-"------------
+"---------------
+"   My Templates
+"---------------
 
-execute 'source ' . g:my_vimfiles_path . '/template/config.vim'
+execute 'source ' . g:my_vimfiles_path . '/template/load.vim'
 
 
 "-----------------------
