@@ -252,7 +252,10 @@ let g:airline_symbols.whitespace = ''
 " NERDTree
 
 " open NERDTree with vim starting
-autocmd VimEnter * NERDTree | wincmd p
+" not open if in diff mode
+if !&diff
+    autocmd VimEnter * NERDTree | wincmd p
+endif
 " execute 'q' if NERDTree is the only window remaining in current tab.
 autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
 " open the existing NERDTree on each new tab.
