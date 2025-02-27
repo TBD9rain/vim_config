@@ -146,7 +146,7 @@ execute 'set spellfile=' . g:my_vimfiles_path . '/spell/en.utf-8.add'
 "------------
 
 " highlight syntax word
-syntax on
+syntax enable
 execute 'source ' . g:my_vimfiles_path . '/syntax/load.vim'
 
 
