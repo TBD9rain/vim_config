@@ -61,6 +61,13 @@
     "vimlsp.diagnostic.enable": true,
     "vimlsp.trace.server": "off",
 
+    "pyright.enable": true,
+    //  add current directory and sub directories to search path
+    "python.analysis.extraPaths": ["."],
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportAttributeAccessIssue": "none"
+    },
+
 
     //  language server
     "languageserver": {
