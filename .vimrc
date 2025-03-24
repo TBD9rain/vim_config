@@ -210,13 +210,13 @@ call plug#begin(g:vim_plug_path)
 
     Plug 'morhetz/gruvbox'
 
-    Plug 'vim-airline/vim-airline'
-
-    Plug 'preservim/nerdtree'
-
-    Plug 'ryanoasis/vim-devicons'
-
     if ShouldLoadPlugins()
+        Plug 'vim-airline/vim-airline'
+
+        Plug 'preservim/nerdtree'
+
+        Plug 'ryanoasis/vim-devicons'
+
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
         Plug 'SirVer/ultisnips'
@@ -232,43 +232,44 @@ set background=dark
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
-" vim-airline
-
-" display buffer number
-let g:airline_section_b = 'BufFile %n'
-" display buffer number
-let g:airline_section_z = '%p%% %l/%L %c'
-" display names of different files in buffer
-let g:airline#extensions#tabline#enabled = 1
-" enable powerline fonts display
-let g:airline_powerline_fonts = 1
-" change display icons
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.readonly = '󱀰'
-let g:airline_symbols.whitespace = ''
-
-" NERDTree
-
-" open NERDTree with vim starting
-" not open if in diff mode
-if !&diff
-    autocmd VimEnter * NERDTree | wincmd p
-endif
-" execute 'q' if NERDTree is the only window remaining in current tab.
-autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
-" open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
-" change display icons
-let g:NERDTreeDirArrowExpandable = '󰡏'
-let g:NERDTreeDirArrowCollapsible = '󰡍'
-
-" Vim-DevIcons
-
-execute 'source ' . g:my_vimfiles_path . '/dev_icons/icon_config.vim'
-
 if ShouldLoadPlugins()
+
+    " vim-airline
+
+    " display buffer number
+    let g:airline_section_b = 'BufFile %n'
+    " display buffer number
+    let g:airline_section_z = '%p%% %l/%L %c'
+    " display names of different files in buffer
+    let g:airline#extensions#tabline#enabled = 1
+    " enable powerline fonts display
+    let g:airline_powerline_fonts = 1
+    " change display icons
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.readonly = '󱀰'
+    let g:airline_symbols.whitespace = ''
+
+    " NERDTree
+
+    " open NERDTree with vim starting
+    " not open if in diff mode
+    if !&diff
+        autocmd VimEnter * NERDTree | wincmd p
+    endif
+    " execute 'q' if NERDTree is the only window remaining in current tab.
+    autocmd BufEnter * if winnr('$') == 1 && &filetype == 'nerdtree' | call timer_start(1, { tid -> execute('q') }) | endif
+    " open the existing NERDTree on each new tab.
+    autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+    " change display icons
+    let g:NERDTreeDirArrowExpandable = '󰡏'
+    let g:NERDTreeDirArrowCollapsible = '󰡍'
+
+    " Vim-DevIcons
+
+    execute 'source ' . g:my_vimfiles_path . '/dev_icons/icon_config.vim'
+
     " UltiSnips
 
     let g:UltiSnipsEnableSnipMate = 0
