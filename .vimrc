@@ -274,7 +274,7 @@ if ShouldLoadPlugins()
 
     let g:UltiSnipsEnableSnipMate = 0
     let g:UltiSnipsEditSplit = 'vertical'
-    let g:UltiSnipsSnippetDirectories = [g:my_vimfiles_path.'/ultisnips']
+    execute 'source ' . g:my_vimfiles_path . '/ultisnips/load.vim'
 
     " coc.nvim
 
