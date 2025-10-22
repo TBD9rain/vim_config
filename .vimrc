@@ -1,6 +1,6 @@
 "===================================================================================================
 "
-"   Version : 1.0.0
+"   Version : 1.0.1
 "   Title   : .vimrc
 "
 "   Description
@@ -303,6 +303,8 @@ if ShouldLoadPlugins()
 
         while 1
             if isdirectory(l:path_cur . '/.git')
+                break
+            elseif filereadable(l:path_cur . '/.git')
                 break
             elseif l:path_cur == l:path_pre
                 let l:path_cur = '.'
