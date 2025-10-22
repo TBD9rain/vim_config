@@ -1,6 +1,6 @@
 {
     //  coc setting
-    "coc.preferences.extensionUpdateCheck": "weekly",
+    "extensions.updateCheck": "weekly",
     "coc.preferences.maxFileSize": "2MB",
 
 
@@ -52,6 +52,19 @@
 
     //  CodeLens
     "codeLens.enable": true,
+    "codeLens.display": true,
+    "codeLens.position": "top",
+    "codeLens.separator": "",
+    "codeLens.subseparator": " | ",
+
+
+    //  inlay hints
+    "inlayHint.enable": true,
+    "inlayHint.enableParameter": true,
+    "inlayHint.display": true,
+    "inlayHint.refreshOnInsertMode": true,
+    "inlayHint.position": "inline",
+    "inlayHint.maximumLength": 0,
 
 
     //  coc extensions
@@ -67,6 +80,9 @@
     "python.analysis.diagnosticSeverityOverrides": {
         "reportAttributeAccessIssue": "none"
     },
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.parameterTypes": false,
+    "pyright.inlayHints.functionReturnTypes": false,
 
 
     //  language server
